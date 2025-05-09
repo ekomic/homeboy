@@ -65,7 +65,7 @@ const config: HardhatUserConfig = {
       accounts: [PRIVATE_KEY], // Consider using a mnemonic for multiple accounts
       chainId: 59144, // Explicitly set Linea Mainnet chain ID
       gasPrice: 'auto', // Auto-estimate gas price
-      gas: 30_000_000, // Increased 3x from 10M to 30M for complex deployments
+//      gas: 30_000_000, // Increased 3x from 10M to 30M for complex deployments
       // Fallback RPCs for reliability
       fallbackUrls: [
         'https://rpc.linea.build', // Public Linea Mainnet RPC

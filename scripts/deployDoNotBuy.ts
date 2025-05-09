@@ -17,7 +17,7 @@ async function main() {
   } catch (error) {
     throw new Error(`Failed to fetch account balance: ${error.message}`);
   }
-  const minBalance = ethers.parseEther('0.003'); // Minimum 0.06 ETH for 30M gas at 2 Gwei
+  const minBalance = ethers.parseEther('0.0001'); // Minimum 0.06 ETH for 30M gas at 2 Gwei
   if (balance < minBalance) {
     throw new Error(
       `Insufficient balance: ${ethers.formatEther(balance)} ETH. Need at least ${ethers.formatEther(minBalance)} ETH.`
@@ -56,14 +56,16 @@ async function main() {
   }
 
   // Set gas limit from hardhat.config.ts
-  const gasLimit = 30_000_000;
+  const gasLimit = 5000000;
 
   // Deploy DoNotBuy contract
-  const DoNotBuy = await ethers.getContractFactory('DoNotBuy');
-  const contract = await DoNotBuy.deploy(
+  //const DoNotBuy = await ethers.getContractFactory('DoNotBuy');
+  const contract = ethers.deployContract('DoNotBuy',[
     '0x610D2f07b7EdC67565160F587F37636194C34E74', // Router address (to be verified)
     '0x176211869cA2b568f2A7D4EE941E073a821EE1ff', // USDC address (verified)
-    { gasPrice, gasLimit }
+    
+  ],
+    { gasLimit }
   );
 
   console.log('Deploying DoNotBuy...');
